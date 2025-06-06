@@ -3,9 +3,9 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "dev": "NODE_ENV=development nodemon backend/server",
+    "dev": "cross-env NODE_ENV=development nodemon backend/server",
     "build": "npm install && npm install --prefix frontend && npm run build --prefix frontend",
-    "start": "NODE_ENV=production node backend/server"
+    "start": "cross-env NODE_ENV=production node backend/server"
   },
   "type": "module",
   "keywords": [],
