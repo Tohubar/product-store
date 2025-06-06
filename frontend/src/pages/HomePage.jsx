@@ -2,6 +2,7 @@ import { Container, VStack, Text, SimpleGrid } from '@chakra-ui/react'
 import React, { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { useProductStore } from '../store/product'
+import ProductCard from "../components/ProductCard"
 
 const HomePage = () => {
     const { fetchProducts, products } = useProductStore()
@@ -25,20 +26,30 @@ const HomePage = () => {
                 columns={{
                     base: 1,
                     md: 2, 
-                    lg: 3
+                    lg: 3,
                 }}
-                spacing={10} w={"full"}
+                spacing={10} 
+                w={"full"}
+                // maxW={'950px'}
+                px={10}
             >
-
+                {products.map((product) => (
+                    <ProductCard key={product._id} product={product} />
+                ))}
+                {/* {products.map((product) => (
+                    <ProductCard key={product._id} product={product} />
+                ))} */}
             </SimpleGrid>
-            <Text fontSize='xl' fontWeight={"bold"} textAlign={"center"} color={"gray.500"} >
-                No Product Found 😥 {" "}
-                <Link to="/create" >
-                    <Text as={"span"} color={"blue.500"} _hover={{textDecoration: "underline"}}>
-                        Create A product
+            {products.length === 0 && (
+                <Text fontSize="xl" fontWeight="bold" textAlign="center" color="gray.500">
+                    No product found 😥{" "}
+                    <Link to="/create">
+                    <Text as="span" color="blue.500" _hover={{ textDecoration: "underline" }}>
+                        Create a product
                     </Text>
-                </Link>
-            </Text>
+                    </Link>
+                </Text>
+            )}
         </VStack>
     </Container>
   )

@@ -8,6 +8,8 @@ export default defineConfig({
     proxy: {
       "/api":  {// whenever we write "/api" it will be prefixed with the 'target' value
         target: "http://localhost:5000",
+        changeOrigin: true,
+        secure: false,
       },
     },
   },
